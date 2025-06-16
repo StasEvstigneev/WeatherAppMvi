@@ -1,4 +1,4 @@
-package com.esy.weatherappmvi.ui.theme
+package com.esy.weatherappmvi.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
