@@ -1,10 +1,10 @@
-package com.esy.weatherappmvi
+package com.esy.weatherappmvi.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.esy.weatherappmvi.ui.theme.WeatherAppMviTheme
+import com.esy.weatherappmvi.presentation.ui.theme.WeatherAppMviTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
