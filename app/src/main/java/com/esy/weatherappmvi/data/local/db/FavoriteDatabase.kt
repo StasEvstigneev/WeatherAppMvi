@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.esy.weatherappmvi.data.local.model.CityEntity
+import com.esy.weatherappmvi.data.local.entity.CityEntity
 
 @Database(entities = [CityEntity::class], version = 1, exportSchema = false)
 abstract class FavoriteDatabase : RoomDatabase() {

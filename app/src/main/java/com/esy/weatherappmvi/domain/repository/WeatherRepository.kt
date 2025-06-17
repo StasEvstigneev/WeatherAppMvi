@@ -1,7 +1,7 @@
 package com.esy.weatherappmvi.domain.repository
 
-import com.esy.weatherappmvi.domain.entity.Forecast
-import com.esy.weatherappmvi.domain.entity.Weather
+import com.esy.weatherappmvi.domain.model.Forecast
+import com.esy.weatherappmvi.domain.model.Weather
 
 interface WeatherRepository {
 
