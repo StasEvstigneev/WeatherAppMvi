@@ -1,11 +1,11 @@
 package com.esy.weatherappmvi.domain.repository
 
-import com.esy.weatherappmvi.domain.entity.City
+import com.esy.weatherappmvi.domain.model.City
 import kotlinx.coroutines.flow.Flow
 
 interface FavoriteRepository {
 
-    val favoriteCities: Flow<City>
+    val favoriteCities: Flow<List<City>>
 
     fun observeIsFavorite(cityId: Int): Flow<Boolean>
 

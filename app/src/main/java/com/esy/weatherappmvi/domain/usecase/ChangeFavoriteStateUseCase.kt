@@ -1,6 +1,6 @@
 package com.esy.weatherappmvi.domain.usecase
 
-import com.esy.weatherappmvi.domain.entity.City
+import com.esy.weatherappmvi.domain.model.City
 import com.esy.weatherappmvi.domain.repository.FavoriteRepository
 import javax.inject.Inject
 

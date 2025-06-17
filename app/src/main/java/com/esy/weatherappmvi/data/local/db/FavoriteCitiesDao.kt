@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.esy.weatherappmvi.data.local.model.CityEntity
+import com.esy.weatherappmvi.data.local.entity.CityEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -1,4 +1,4 @@
-package com.esy.weatherappmvi.domain.entity
+package com.esy.weatherappmvi.domain.model
 
 data class City(
     val id: Int,
