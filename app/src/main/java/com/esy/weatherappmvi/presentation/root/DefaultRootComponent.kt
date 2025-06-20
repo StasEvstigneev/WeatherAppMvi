@@ -29,7 +29,7 @@ class DefaultRootComponent @AssistedInject constructor(
 
     override val stack: Value<ChildStack<*, RootComponent.Child>> = childStack(
         source = navigation,
-        serializer = null,//Config.serializer(),
+        serializer = Config.serializer(),
         initialConfiguration = Config.Favorite,
         handleBackButton = true,
         childFactory = ::child
@@ -83,7 +83,6 @@ class DefaultRootComponent @AssistedInject constructor(
         }
 
     }
-
 
     @Serializable
     sealed interface Config {
