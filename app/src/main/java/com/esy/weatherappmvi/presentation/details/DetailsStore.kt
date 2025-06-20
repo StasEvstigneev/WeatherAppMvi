@@ -16,7 +16,7 @@ import com.esy.weatherappmvi.presentation.details.DetailsStore.State
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-internal interface DetailsStore : Store<Intent, State, Label> {
+interface DetailsStore : Store<Intent, State, Label> {
 
     sealed interface Intent {
         data object ClickBack : Intent
@@ -42,11 +42,11 @@ internal interface DetailsStore : Store<Intent, State, Label> {
     }
 }
 
-internal class DetailsStoreFactory @Inject constructor(
+class DetailsStoreFactory @Inject constructor(
     private val storeFactory: StoreFactory,
     private val getForecastUseCase: GetForecastUseCase,
     private val changeFavoriteStateUseCase: ChangeFavoriteStateUseCase,
-    private val observeFavoriteStateUsecase: ObserveFavoriteStateUseCase
+    private val observeFavoriteStateUseCase: ObserveFavoriteStateUseCase
 ) {
 
     fun create(city: City): DetailsStore =
@@ -79,7 +79,7 @@ internal class DetailsStoreFactory @Inject constructor(
     private inner class BootstrapperImpl(val city: City) : CoroutineBootstrapper<Action>() {
         override fun invoke() {
             scope.launch {
-                observeFavoriteStateUsecase(city.id).collect {
+                observeFavoriteStateUseCase(city.id).collect {
                     dispatch(Action.FavoriteStatusChanged(it))
                 }
             }
