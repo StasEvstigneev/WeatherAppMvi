@@ -3,4 +3,6 @@
     <string name="add_favorite">Add favorite</string>
     <string name="search">Search</string>
     <string name="upcoming_forecast">Прогноз</string>
+    <string name="nothing_found">Ничего не найдено</string>
+    <string name="error">Ошибка</string>
 </resources>
