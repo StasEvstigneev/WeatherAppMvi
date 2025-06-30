@@ -58,7 +58,7 @@ fun SearchContent(component: SearchComponent) {
                 onQueryChange = { component.changeSearchQuery(query = it) },
                 onSearch = { component.onClickSearch() },
                 expanded = true,
-                onExpandedChange = { TODO() },
+                onExpandedChange = { },
                 placeholder = { Text(text = stringResource(R.string.search)) },
                 leadingIcon = {
                     IconButton(onClick = { component.clickBack() }) {
@@ -75,9 +75,7 @@ fun SearchContent(component: SearchComponent) {
                             contentDescription = null
                         )
                     }
-                },
-                colors = TODO(),
-                interactionSource = TODO()
+                }
             )
         },
         modifier = Modifier.focusRequester(focusRequester),

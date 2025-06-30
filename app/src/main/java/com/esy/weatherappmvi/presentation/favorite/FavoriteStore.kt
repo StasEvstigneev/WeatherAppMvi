@@ -98,15 +98,15 @@ class FavoriteStoreFactory @Inject constructor(
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
                 Intent.AddToFavorite -> {
-                    Label.AddToFavorite
+                    publish(Label.AddToFavorite)
                 }
 
                 is Intent.CityItemClicked -> {
-                    Label.CityItemClicked(intent.city)
+                    publish(Label.CityItemClicked(intent.city))
                 }
 
                 Intent.ClickSearch -> {
-                    Label.ClickSearch
+                    publish(Label.ClickSearch)
                 }
             }
         }
