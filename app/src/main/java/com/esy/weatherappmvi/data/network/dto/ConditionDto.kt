@@ -1,8 +1,8 @@
 package com.esy.weatherappmvi.data.network.dto
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 
 data class ConditionDto(
-    @SerialName("text") val text: String,
-    @SerialName("icon") val iconUrl: String
+    @SerializedName("text") val text: String,
+    @SerializedName("icon") val iconUrl: String
 )

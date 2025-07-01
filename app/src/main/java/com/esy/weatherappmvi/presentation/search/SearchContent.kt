@@ -16,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -44,7 +45,6 @@ import com.esy.weatherappmvi.domain.model.City
 fun SearchContent(component: SearchComponent) {
 
     val state by component.model.collectAsState()
-
     val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(key1 = Unit) {
@@ -58,7 +58,7 @@ fun SearchContent(component: SearchComponent) {
                 onQueryChange = { component.changeSearchQuery(query = it) },
                 onSearch = { component.onClickSearch() },
                 expanded = true,
-                onExpandedChange = { },
+                onExpandedChange = {},
                 placeholder = { Text(text = stringResource(R.string.search)) },
                 leadingIcon = {
                     IconButton(onClick = { component.clickBack() }) {
@@ -78,7 +78,9 @@ fun SearchContent(component: SearchComponent) {
                 }
             )
         },
-        modifier = Modifier.focusRequester(focusRequester),
+        modifier = Modifier
+            .focusRequester(focusRequester),
+        colors = SearchBarDefaults.colors(containerColor = Color.White),
         expanded = true,
         onExpandedChange = { }
     ) {
@@ -116,16 +118,11 @@ fun SearchContent(component: SearchComponent) {
                             city = it,
                             onCityClick = { component.onClickCity(it) }
                         )
-
                     }
-
                 }
-
             }
         }
-
     }
-
 }
 
 
@@ -135,7 +132,10 @@ private fun CityCard(
     onCityClick: () -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        shape = CardDefaults.elevatedShape,
+        colors = CardDefaults.elevatedCardColors(containerColor = Color.LightGray),
+        elevation = CardDefaults.elevatedCardElevation()
     ) {
         Column(
             modifier = Modifier
@@ -155,10 +155,8 @@ private fun CityCard(
                 text = city.country,
                 style = MaterialTheme.typography.titleMedium
             )
-
         }
     }
-
 }
 
 @Composable
@@ -168,7 +166,7 @@ private fun Loading() {
     ) {
         CircularProgressIndicator(
             modifier = Modifier.align(Alignment.Center),
-            color = Color.White
+            color = Color.Blue
         )
     }
 }

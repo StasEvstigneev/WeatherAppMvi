@@ -90,7 +90,6 @@ class FavoriteStoreFactory @Inject constructor(
                     dispatch(Action.FavoriteCitiesLoaded(it))
                 }
             }
-
         }
     }
 

@@ -6,6 +6,7 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.popToFirst
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.value.Value
 import com.esy.weatherappmvi.domain.model.City
@@ -42,7 +43,7 @@ class DefaultRootComponent @AssistedInject constructor(
             is Config.Details -> {
                 val component = detailsComponentFactory.create(
                     city = config.city,
-                    onBackClicked = { navigation.pop() },
+                    onBackClicked = { navigation.popToFirst() },
                     componentContext = componentContext
                 )
                 RootComponent.Child.Details(component = component)
@@ -81,7 +82,6 @@ class DefaultRootComponent @AssistedInject constructor(
                 RootComponent.Child.Search(component = component)
             }
         }
-
     }
 
     @Serializable

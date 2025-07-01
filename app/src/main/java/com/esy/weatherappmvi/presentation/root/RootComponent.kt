@@ -15,5 +15,4 @@ interface RootComponent {
         data class Search(val component: SearchComponent) : Child
         data class Details(val component: DetailsComponent) : Child
     }
-
 }

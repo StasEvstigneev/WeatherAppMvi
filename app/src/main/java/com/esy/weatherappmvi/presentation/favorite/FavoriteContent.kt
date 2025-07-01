@@ -87,11 +87,8 @@ fun FavoriteContent(component: FavoriteComponent) {
                     onAddFavoriteClick = { component.clickAddFavorite() }
                 )
             }
-
         }
-
     }
-
 }
 
 
@@ -223,10 +220,8 @@ private fun AddFavoriteCityCard(
                 text = stringResource(R.string.add_favorite),
                 style = MaterialTheme.typography.titleMedium
             )
-
         }
     }
-
 }
 
 @Composable
@@ -240,7 +235,7 @@ private fun SearchCard(
     ) {
         Row(
             modifier = Modifier
-                .clickable { onClick() }
+                .clickable(enabled = true) { onClick() }
                 .fillMaxWidth()
                 .background(gradient.primaryGradient),
             verticalAlignment = Alignment.CenterVertically

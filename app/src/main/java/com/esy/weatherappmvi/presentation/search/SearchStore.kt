@@ -95,15 +95,14 @@ class SearchStoreFactory @Inject constructor(
                         OpenReason.AddToFavorite -> {
                             scope.launch {
                                 changeFavoriteStateUseCase.addToFavorite(intent.city)
+                                publish(Label.SavedToFavorite)
                             }
-                            publish(Label.SavedToFavorite)
                         }
 
                         OpenReason.RegularSearch -> {
                             publish(Label.OpenForecast(intent.city))
                         }
                     }
-
                 }
 
                 Intent.ClickSearch -> {
@@ -120,8 +119,6 @@ class SearchStoreFactory @Inject constructor(
                 }
             }
         }
-
-
     }
 
     private object ReducerImpl : Reducer<State, Msg> {

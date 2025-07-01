@@ -44,10 +44,8 @@ class DefaultFavoriteComponent @AssistedInject constructor(
                         onSearchClicked()
                     }
                 }
-
             }
         }
-
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

@@ -26,8 +26,6 @@ fun RootContent(component: RootComponent) {
                     SearchContent(component = instance.component)
                 }
             }
-
         }
     }
-
 }

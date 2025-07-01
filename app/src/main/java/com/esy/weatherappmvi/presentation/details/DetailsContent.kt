@@ -20,7 +20,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -93,11 +93,8 @@ fun DetailsContent(component: DetailsComponent) {
                     Loading()
                 }
             }
-
         }
-
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -130,7 +127,7 @@ private fun TopBar(
                 val icon = if (isCityFavorite) {
                     Icons.Default.Star
                 } else {
-                    Icons.Outlined.Star
+                    Icons.Default.StarBorder
                 }
                 Icon(
                     imageVector = icon,
@@ -138,9 +135,7 @@ private fun TopBar(
                 )
             }
         }
-
     )
-
 }
 
 
@@ -169,17 +164,15 @@ private fun Forecast(forecast: Forecast) {
                 model = forecast.currentWeather.conditionIcon,
                 contentDescription = null
             )
-            Text(
-                text = forecast.currentWeather.date.formattedFullDate(),
-                style = MaterialTheme.typography.titleLarge
-            )
         }
+        Text(
+            text = forecast.currentWeather.date.formattedFullDate(),
+            style = MaterialTheme.typography.titleLarge
+        )
         Spacer(modifier = Modifier.weight(0.5f))
         AnimatedUpcomingWeather(forecast.upcoming)
         Spacer(modifier = Modifier.weight(0.5f))
-
     }
-
 }
 
 @Composable
@@ -216,12 +209,9 @@ private fun UpcomingWeather(
                 upcoming.forEach {
                     DayWeatherCard(it)
                 }
-
             }
-
         }
     }
-
 }
 
 @Composable
@@ -242,7 +232,6 @@ private fun AnimatedUpcomingWeather(upcoming: List<Weather>) {
         UpcomingWeather(upcoming = upcoming)
 
     }
-
 }
 
 
@@ -276,15 +265,12 @@ private fun RowScope.DayWeatherCard(weather: Weather) {
                 color = Color.Black
             )
         }
-
     }
-
 }
 
 
 @Composable
 private fun Initial() {
-
 }
 
 @Composable
@@ -294,13 +280,11 @@ private fun Loading() {
     ) {
         CircularProgressIndicator(
             modifier = Modifier.align(Alignment.Center),
-            color = Color.White
+            color = Color.Blue
         )
     }
-
 }
 
 @Composable
 private fun Error() {
-
 }
