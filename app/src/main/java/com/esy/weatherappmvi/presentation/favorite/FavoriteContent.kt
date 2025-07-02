@@ -16,7 +16,7 @@ import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -45,9 +45,10 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.esy.weatherappmvi.R
 import com.esy.weatherappmvi.presentation.extensions.tempToFormattedString
-import com.esy.weatherappmvi.presentation.ui.theme.CardGradients
-import com.esy.weatherappmvi.presentation.ui.theme.Gradient
 import com.esy.weatherappmvi.presentation.ui.theme.Orange
+import com.esy.weatherappmvi.presentation.ui.theme.TempGradient
+import com.esy.weatherappmvi.presentation.ui.theme.TempGradients
+import com.esy.weatherappmvi.presentation.ui.theme.getTempGradient
 
 @Composable
 fun FavoriteContent(component: FavoriteComponent) {
@@ -72,14 +73,13 @@ fun FavoriteContent(component: FavoriteComponent) {
                     onClick = { component.clickSearch() }
                 )
             }
-            itemsIndexed(
+            items(
                 items = state.cityItems,
-                key = { _, item -> item.city.id }
-            ) { index, item ->
+                key = { it.city.id }
+            ) {
                 CityCard(
-                    cityItem = item,
-                    index = index,
-                    onCityClick = { component.clickCityItem(item.city) }
+                    cityItem = it,
+                    onCityClick = { component.clickCityItem(it.city) }
                 )
             }
             item {
@@ -96,10 +96,17 @@ fun FavoriteContent(component: FavoriteComponent) {
 @Composable
 private fun CityCard(
     cityItem: FavoriteStore.State.CityItem,
-    index: Int,
     onCityClick: () -> Unit
 ) {
-    val gradient = getGradientByIndex(index)
+    val gradient = when (val state = cityItem.weatherState) {
+        is FavoriteStore.State.WeatherState.Loaded -> {
+            getGradientByTemperature(state.tempC.toInt())
+        }
+
+        else -> {
+            TempGradients.tempGradients[7]
+        }
+    }
 
     Card(
         modifier = Modifier
@@ -140,15 +147,12 @@ private fun CityCard(
                             .padding(16.dp)
                             .size(48.dp),
                         imageVector = Icons.Default.ErrorOutline,
-                        tint = Color.Black,
+                        tint = Color.Red,
                         contentDescription = null
                     )
-
                 }
 
-                FavoriteStore.State.WeatherState.Initial -> {
-
-                }
+                FavoriteStore.State.WeatherState.Initial -> {}
 
                 is FavoriteStore.State.WeatherState.Loaded -> {
                     GlideImage(
@@ -163,7 +167,7 @@ private fun CityCard(
                             .align(Alignment.BottomStart)
                             .padding(bottom = 24.dp),
                         text = weatherState.tempC.tempToFormattedString(),
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = Color.DarkGray,
                         style = MaterialTheme.typography.bodyLarge.copy(fontSize = 48.sp)
                     )
 
@@ -172,7 +176,7 @@ private fun CityCard(
                 FavoriteStore.State.WeatherState.Loading -> {
                     CircularProgressIndicator(
                         modifier = Modifier.align(Alignment.Center),
-                        color = MaterialTheme.colorScheme.onPrimary
+                        color = Color.Blue
                     )
                 }
             }
@@ -180,7 +184,7 @@ private fun CityCard(
                 modifier = Modifier.align(Alignment.BottomStart),
                 text = cityItem.city.name,
                 style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onPrimary
+                color = Color.DarkGray
             )
         }
 
@@ -228,7 +232,7 @@ private fun AddFavoriteCityCard(
 private fun SearchCard(
     onClick: () -> Unit
 ) {
-    val gradient = CardGradients.gradients[3]
+    val gradient = TempGradients.tempGradients[6]
 
     Card(
         shape = CircleShape
@@ -255,7 +259,6 @@ private fun SearchCard(
     }
 }
 
-private fun getGradientByIndex(index: Int): Gradient {
-    val gradients = CardGradients.gradients
-    return gradients[index % gradients.size]
+private fun getGradientByTemperature(tempC: Int): TempGradient {
+    return getTempGradient(tempC)
 }

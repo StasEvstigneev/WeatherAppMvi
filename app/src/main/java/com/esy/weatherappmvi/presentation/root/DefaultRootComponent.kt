@@ -34,7 +34,6 @@ class DefaultRootComponent @AssistedInject constructor(
         initialConfiguration = Config.Favorite,
         handleBackButton = true,
         childFactory = ::child
-
     )
 
     @OptIn(DelicateDecomposeApi::class)
