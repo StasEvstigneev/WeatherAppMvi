@@ -13,8 +13,8 @@ data class TempGradient(
         secondColor: Color,
         thirdColor: Color
     ) : this(
-        primaryGradient = Brush.linearGradient(listOf(secondColor, thirdColor)),
-        secondaryGradient = Brush.linearGradient(listOf(firstColor, thirdColor)),
+        primaryGradient = Brush.linearGradient(listOf(firstColor, thirdColor)),
+        secondaryGradient = Brush.linearGradient(listOf(secondColor, thirdColor)),
         shadowColor = firstColor
     )
 
@@ -24,51 +24,57 @@ object TempGradients {
     val tempGradients = listOf(
         //SCORCHING
         TempGradient(
-            firstColor = Color(0xFFFFF176),
-            secondColor = Color(0xFFFF9100),
-            thirdColor = Color(0xFFFF3D00)
+            firstColor = Color(0xFFF57F17),
+            secondColor = Color(0xFFE65100),
+            thirdColor = Color(0xFFE53A07)
         ),
         //HOT
         TempGradient(
-            firstColor = Color(0xFFFFF9C4),
-            secondColor = Color(0xFFFFCA28),
-            thirdColor = Color(0xFFFF8F00)
+            firstColor = Color(0xFFFDD835),
+            secondColor = Color(0xFFFB8C00),
+            thirdColor = Color(0xFFFF9800)
         ),
         //WARM
         TempGradient(
             firstColor = Color(0xFFFFF3E0),
-            secondColor = Color(0xFFFFE0B2),
-            thirdColor = Color(0xFFFFD180)
+            secondColor = Color(0xFFFFEB3B),
+            thirdColor = Color(0xFFFFB300)
         ),
         //MILD
         TempGradient(
-            firstColor = Color(0xFFB2DFDB),
-            secondColor = Color(0xFFFFF59D),
-            thirdColor = Color(0xFFC5E1A5)
+            firstColor = Color(0xFFC5E1A5),
+            secondColor = Color(0xFFFFEB3B),
+            thirdColor = Color(0xFF388E3C)
         ),
         //COOL
         TempGradient(
             firstColor = Color(0xFF64FFDA),
             secondColor = Color(0xFF80DEEA),
-            thirdColor = Color(0xFFB2EBF2)
+            thirdColor = Color(0xFF29B6F6)
         ),
         //COLD
         TempGradient(
             firstColor = Color(0xFFE3F2FD),
             secondColor = Color(0xFF90CAF9),
-            thirdColor = Color(0xFF64B5F6)
+            thirdColor = Color(0xFF29B6F6)
         ),
         //FREEZING
         TempGradient(
-            firstColor = Color(0xFFB3E5FC),
+            firstColor = Color(0xFF81D4FA),
             secondColor = Color(0xFF40C4FF),
-            thirdColor = Color(0xFF2979FF)
+            thirdColor = Color(0xFF0D47A1)
         ),
         //DEFAULT
         TempGradient(
             firstColor = Color(0xFFE1F5FE),
-            secondColor = Color(0xFFB3E5FC),
-            thirdColor = Color(0xFF81D4FA)
+            secondColor = Color(0xFF64B5F6),
+            thirdColor = Color(0xFF03A9F4)
+        ),
+        //DEFAULT-LIGHT
+        TempGradient(
+            firstColor = Color(0xFFEFEFEF),
+            secondColor = Color(0xFFFFFFFF),
+            thirdColor = Color(0xFFFFFFFF)
         )
     )
 }

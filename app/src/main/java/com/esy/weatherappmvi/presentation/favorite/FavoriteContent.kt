@@ -20,11 +20,9 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.ErrorOutline
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -39,12 +37,15 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.esy.weatherappmvi.R
 import com.esy.weatherappmvi.presentation.extensions.tempToFormattedString
+import com.esy.weatherappmvi.presentation.ui.theme.Error
+import com.esy.weatherappmvi.presentation.ui.theme.Loading
 import com.esy.weatherappmvi.presentation.ui.theme.Orange
 import com.esy.weatherappmvi.presentation.ui.theme.TempGradient
 import com.esy.weatherappmvi.presentation.ui.theme.TempGradients
@@ -60,11 +61,11 @@ fun FavoriteContent(component: FavoriteComponent) {
             .fillMaxSize()
             .padding(16.dp)
 
-    ) {
+    ) { paddingValues ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
             modifier = Modifier.fillMaxSize(),
-            contentPadding = it,
+            contentPadding = paddingValues,
             verticalArrangement = Arrangement.spacedBy(24.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
@@ -76,10 +77,10 @@ fun FavoriteContent(component: FavoriteComponent) {
             items(
                 items = state.cityItems,
                 key = { it.city.id }
-            ) {
+            ) { city ->
                 CityCard(
-                    cityItem = it,
-                    onCityClick = { component.clickCityItem(it.city) }
+                    cityItem = city,
+                    onCityClick = { component.clickCityItem(city.city) }
                 )
             }
             item {
@@ -137,19 +138,11 @@ private fun CityCard(
                         radius = size.minDimension / 2
                     )
                 }
-                .padding(24.dp)
+                .padding(horizontal = 12.dp, vertical = 24.dp)
         ) {
             when (val weatherState = cityItem.weatherState) {
                 FavoriteStore.State.WeatherState.Error -> {
-                    Icon(
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .padding(16.dp)
-                            .size(48.dp),
-                        imageVector = Icons.Default.ErrorOutline,
-                        tint = Color.Red,
-                        contentDescription = null
-                    )
+                    Error()
                 }
 
                 FavoriteStore.State.WeatherState.Initial -> {}
@@ -167,29 +160,24 @@ private fun CityCard(
                             .align(Alignment.BottomStart)
                             .padding(bottom = 24.dp),
                         text = weatherState.tempC.tempToFormattedString(),
-                        color = Color.DarkGray,
-                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 48.sp)
+                        color = Color.White,
+                        style = MaterialTheme.typography.bodyLarge.copy(fontSize = 48.sp),
+                        overflow = TextOverflow.Ellipsis
                     )
-
                 }
 
                 FavoriteStore.State.WeatherState.Loading -> {
-                    CircularProgressIndicator(
-                        modifier = Modifier.align(Alignment.Center),
-                        color = Color.Blue
-                    )
+                    Loading()
                 }
             }
             Text(
                 modifier = Modifier.align(Alignment.BottomStart),
                 text = cityItem.city.name,
                 style = MaterialTheme.typography.titleMedium,
-                color = Color.DarkGray
+                color = Color.White
             )
         }
-
     }
-
 }
 
 @Composable
@@ -232,7 +220,7 @@ private fun AddFavoriteCityCard(
 private fun SearchCard(
     onClick: () -> Unit
 ) {
-    val gradient = TempGradients.tempGradients[6]
+    val gradient = TempGradients.tempGradients[7]
 
     Card(
         shape = CircleShape
@@ -241,11 +229,11 @@ private fun SearchCard(
             modifier = Modifier
                 .clickable(enabled = true) { onClick() }
                 .fillMaxWidth()
-                .background(gradient.primaryGradient),
+                .background(gradient.secondaryGradient),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
-                modifier = Modifier.padding(vertical = 16.dp, horizontal = 8.dp),
+                modifier = Modifier.padding(16.dp),
                 imageVector = Icons.Default.Search,
                 contentDescription = null,
                 tint = Color.White

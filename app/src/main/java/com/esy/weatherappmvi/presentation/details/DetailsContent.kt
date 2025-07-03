@@ -24,7 +24,6 @@ import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -40,6 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,17 +51,31 @@ import com.esy.weatherappmvi.domain.model.Weather
 import com.esy.weatherappmvi.presentation.extensions.formattedFullDate
 import com.esy.weatherappmvi.presentation.extensions.formattedShortDayOfWeek
 import com.esy.weatherappmvi.presentation.extensions.tempToFormattedString
-import com.esy.weatherappmvi.presentation.ui.theme.CardGradients
+import com.esy.weatherappmvi.presentation.ui.theme.Error
+import com.esy.weatherappmvi.presentation.ui.theme.Initial
+import com.esy.weatherappmvi.presentation.ui.theme.Loading
+import com.esy.weatherappmvi.presentation.ui.theme.TempGradients
+import com.esy.weatherappmvi.presentation.ui.theme.getTempGradient
 
 @Composable
 fun DetailsContent(component: DetailsComponent) {
 
     val state by component.model.collectAsState()
 
+    val gradient = when (val forecastState = state.forecastState) {
+        is DetailsStore.State.ForecastState.Loaded -> {
+            getTempGradient(forecastState.forecast.currentWeather.tempC.toInt())
+        }
+
+        else -> {
+            TempGradients.tempGradients[8]
+        }
+    }
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(CardGradients.gradients[1].primaryGradient),
+            .background(gradient.secondaryGradient),
         containerColor = Color.Transparent,
         contentColor = MaterialTheme.colorScheme.onPrimary,
         topBar = {
@@ -150,6 +164,7 @@ private fun Forecast(forecast: Forecast) {
         Text(
             text = forecast.currentWeather.conditionText,
             style = MaterialTheme.typography.titleLarge,
+            textAlign = TextAlign.Center
         )
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -167,7 +182,7 @@ private fun Forecast(forecast: Forecast) {
         }
         Text(
             text = forecast.currentWeather.date.formattedFullDate(),
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.weight(0.5f))
         AnimatedUpcomingWeather(forecast.upcoming)
@@ -230,7 +245,6 @@ private fun AnimatedUpcomingWeather(upcoming: List<Weather>) {
         )
     ) {
         UpcomingWeather(upcoming = upcoming)
-
     }
 }
 
@@ -266,25 +280,4 @@ private fun RowScope.DayWeatherCard(weather: Weather) {
             )
         }
     }
-}
-
-
-@Composable
-private fun Initial() {
-}
-
-@Composable
-private fun Loading() {
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.align(Alignment.Center),
-            color = Color.Blue
-        )
-    }
-}
-
-@Composable
-private fun Error() {
 }
