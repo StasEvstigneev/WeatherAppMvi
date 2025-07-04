@@ -8,7 +8,7 @@ Android приложение. Тестовое приложение,позвол
 Архитектура проекта: паттерн MVI.
 
 ### Стек
-Kotlin, Jetpack Compose, MVIKotlin, Decompose, Retrofit, Room, Coroutines, Flow, Glide.
+Kotlin, Jetpack Compose, MVIKotlin, Decompose, Retrofit, Room, Coroutines, Flow, Dagger, Glide.
 
 ### Инструкции по сборке проекта
 
@@ -28,7 +28,7 @@ Project purpose - developing skills in working with Decompose and MVIKotlin libr
 Project architecture: MVI pattern.
 
 ### Stack
-Kotlin, Jetpack Compose, MVIKotlin, Decompose, Retrofit, Room, Coroutines, Flow, Glide.
+Kotlin, Jetpack Compose, MVIKotlin, Decompose, Retrofit, Room, Coroutines, Flow, Dagger, Glide.
 
 ### Project build instruction
 
