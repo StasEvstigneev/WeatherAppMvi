@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeatherAppMvi</string>
+    <string name="add_favorite">Add to favorite</string>
+    <string name="search">Search</string>
+    <string name="upcoming_forecast">Forecast</string>
+    <string name="nothing_found">No results</string>
+    <string name="error">Error</string>
+</resources>
