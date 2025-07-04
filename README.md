@@ -1,9 +1,9 @@
 ### [RUS]
 
-### ПРИЛОЖЕНИЕ "ПРОГНОЗ ПОГОДЫ"
+### ANDROID ПРИЛОЖЕНИЕ "ПРОГНОЗ ПОГОДЫ"
 
 ### Описание
-Android приложение. Тестовое приложение,позволяющее определять прогноз погоды в выбранных городах, а также добавлять города в избранное.
+Тестовое приложение,позволяющее определять прогноз погоды в выбранных городах, а также добавлять города в избранное.
 Задача проекта - отработка навыков работы с библиотеками Decompose и MVIKotlin.
 Архитектура проекта: паттерн MVI.
 
@@ -20,10 +20,10 @@ Kotlin, Jetpack Compose, MVIKotlin, Decompose, Retrofit, Room, Coroutines, Flow,
 
 ### [ENG]
 
-### APPLICATION "WEATHER FORECAST"
+### ANDROID APPLICATION "WEATHER FORECAST"
 
 ### Description
-Android application. A test app, allowing a user to get weather forecast in chosen cities and add cities in favorite as well.
+A test app, allowing a user to get weather forecast in chosen cities and add cities in favorite as well.
 Project purpose - developing skills in working with Decompose and MVIKotlin libraries.
 Project architecture: MVI pattern.
 
