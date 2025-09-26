@@ -16,7 +16,10 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun Error() {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
         Icon(
             modifier = Modifier
                 .padding(16.dp)
@@ -32,7 +35,8 @@ fun Error() {
 @Composable
 fun Loading() {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
@@ -44,4 +48,5 @@ fun Loading() {
 }
 
 @Composable
-fun Initial() {}
+fun Initial() {
+}
