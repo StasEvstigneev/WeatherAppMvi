@@ -59,12 +59,13 @@ fun FavoriteContent(component: FavoriteComponent) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
 
     ) { paddingValues ->
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
             contentPadding = paddingValues,
             verticalArrangement = Arrangement.spacedBy(24.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
