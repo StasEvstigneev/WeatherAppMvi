@@ -72,11 +72,13 @@ fun DetailsContent(component: DetailsComponent) {
         }
     }
 
+    val containerColor = setBackgroundColor(state)
+
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
             .background(gradient.secondaryGradient),
-        containerColor = Color.Transparent,
+        containerColor = containerColor,
         contentColor = MaterialTheme.colorScheme.onPrimary,
         topBar = {
             TopBar(
@@ -117,7 +119,7 @@ private fun TopBar(
     cityName: String,
     isCityFavorite: Boolean,
     onBackClick: () -> Unit,
-    onFavoriteClick: () -> Unit
+    onFavoriteClick: () -> Unit,
 ) {
     CenterAlignedTopAppBar(
         title = { Text(text = cityName) },
@@ -278,6 +280,19 @@ private fun RowScope.DayWeatherCard(weather: Weather) {
                 text = weather.date.formattedShortDayOfWeek(),
                 color = Color.Black
             )
+        }
+    }
+}
+
+@Composable
+private fun setBackgroundColor(state: DetailsStore.State): Color {
+    return when (val forecastState = state.forecastState) {
+        is DetailsStore.State.ForecastState.Loaded -> {
+            Color.Transparent
+        }
+
+        else -> {
+            MaterialTheme.colorScheme.background
         }
     }
 }
