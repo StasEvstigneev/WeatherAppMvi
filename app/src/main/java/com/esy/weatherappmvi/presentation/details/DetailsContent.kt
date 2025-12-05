@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Star
@@ -187,7 +188,11 @@ private fun Forecast(forecast: Forecast) {
             style = MaterialTheme.typography.titleMedium
         )
         Spacer(modifier = Modifier.weight(0.5f))
-        AnimatedUpcomingWeather(forecast.upcoming)
+        LazyColumn(userScrollEnabled = true) {
+            item {
+                AnimatedUpcomingWeather(forecast.upcoming)
+            }
+        }
         Spacer(modifier = Modifier.weight(0.5f))
     }
 }
